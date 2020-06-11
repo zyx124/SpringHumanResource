@@ -72,7 +72,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public int getDeptId() {
+    public Integer getDeptId() {
         return deptId;
     }
 

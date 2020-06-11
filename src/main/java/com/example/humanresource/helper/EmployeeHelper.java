@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Component
 public class EmployeeHelper {
     @Autowired
     private EmployeeRepository repo;
+
+
 
     public Employee getEmployeeById(int id) {
         Optional<Employee> employeeOptional = repo.findById(id);
@@ -38,8 +41,24 @@ public class EmployeeHelper {
             return;
         }
         Employee employee = employeeOptional.get();
-        employee.setName(temp.getName());
+        if (temp.getName() != null) {
+            employee.setName(temp.getName());
+        }
+        if (temp.getJob() != null) {
+            employee.setJob(temp.getJob());
+        }
+        if (temp.getDeptId() != null) {
+            employee.setDeptId(temp.getDeptId());
+        }
+        if (temp.getHireDate() != null) {
+            employee.setHireDate(temp.getHireDate());
+        }
+        if (temp.getManager() != null) {
+            employee.setManager(temp.getManager());
+        }
+
         repo.save(employee);
+
     }
 
     public void deleteEmployee(int id) {

@@ -1,5 +1,6 @@
 package com.example.humanresource.controller;
 
+import com.example.humanresource.dao.EmployeeRepository;
 import com.example.humanresource.model.Employee;
 import com.example.humanresource.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,14 @@ import java.util.*;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
+
     private EmployeeService service;
+
+    // constructor-based injection
+    @Autowired
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Employee> getEmployees() {
@@ -42,12 +50,12 @@ public class EmployeeController {
         service.deleteEmployeeById(id);
     }
 
-    public EmployeeService getService() {
-        return service;
-    }
-
-    @Autowired
-    public void setService(EmployeeService service) {
-        this.service = service;
-    }
+//    public EmployeeService getService() {
+//        return service;
+//    }
+//
+//    @Autowired
+//    public void setService(EmployeeService service) {
+//        this.service = service;
+//    }
 }
