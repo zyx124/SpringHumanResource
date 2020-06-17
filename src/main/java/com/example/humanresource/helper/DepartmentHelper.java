@@ -16,14 +16,10 @@ public class DepartmentHelper {
 
     public Department getDepartmentById(int id) {
         Optional<Department> departmentOptional = repo.findById(id);
-        if (departmentOptional.isPresent()) {
-            return departmentOptional.get();
-        } else {
-            return null;
-        }
+        return departmentOptional.orElse(null);
     }
 
-    public List<Department> getAllDepartment() {
+    public List<Department> getAllDepartments() {
         return repo.findAll();
     }
 
