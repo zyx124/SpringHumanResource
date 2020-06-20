@@ -4,7 +4,10 @@ import com.example.humanresource.dao.EmployeeRepository;
 import com.example.humanresource.model.Employee;
 import com.example.humanresource.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -50,12 +53,22 @@ public class EmployeeController {
         service.deleteEmployeeById(id);
     }
 
-//    public EmployeeService getService() {
-//        return service;
+//    @GetMapping("/addemployee")
+//    public ModelAndView displayEmployee() {
+//        List<Employee> employees = service.getAllEmployees();
+//        ModelAndView modelAndView = new ModelAndView("employees");
+//        modelAndView.addObject("employees", employees);
+//        return modelAndView;
 //    }
-//
-//    @Autowired
-//    public void setService(EmployeeService service) {
-//        this.service = service;
-//    }
+
+    @PostMapping("/modifyemployee/{id}")
+    public String updateEmployeeFront(@PathVariable int id, @RequestBody Employee employee, Model model) {
+        Employee getEmployee = service.getEmployeeById(id);
+        if (getEmployee == null) {
+            System.out.println("Invalid user Id: " + id);
+
+        }
+        model.addAttribute("employee", employee);
+        return "updateEmployee";
+    }
 }
