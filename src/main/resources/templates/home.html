@@ -6,6 +6,15 @@
 </head>
 <body>
 <h1>Hello!</h1>
-<p th:text="${name} + '!'" />
+<table>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.job}"></td>
+        <td th:text="${employee.salary}"></td>
+    </tr>
+</table>
+
+
 </body>
 </html>
