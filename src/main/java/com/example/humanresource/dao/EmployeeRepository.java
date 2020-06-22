@@ -12,8 +12,11 @@ import java.util.*;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Modifying
-    @Query(value="insert into employee(empid, name, deptid) values (:id, :name, 20)", nativeQuery=true)
-    void create(@Param("id") int id, @Param("name") String name);
+    @Query(value="insert into employee(empid, name, job, manager, salary, deptid) values (:id, :name, :job, :manager, :salary, :deptid)", nativeQuery=true)
+    void create(@Param("id") int id, @Param("name") String name, @Param("job") String job, @Param("manager") int manager, @Param("salary") double salary, @Param("deptid") int deptid);
+
+    @Query(value="Select empid from employee ORDER BY empid DESC", nativeQuery=true)
+    List<Integer> getIdList();
 
     List<Employee> findAllByDeptId(int deptName);
 }
