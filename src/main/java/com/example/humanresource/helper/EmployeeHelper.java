@@ -16,9 +16,6 @@ public class EmployeeHelper {
     @Autowired
     private EmployeeRepository repo;
 
-    @Autowired
-    private SalaryReportRepository salaryRepo;
-
     public Employee getEmployeeById(int id) {
         Optional<Employee> employeeOptional = repo.findById(id);
         if (employeeOptional.isPresent()) {
@@ -73,9 +70,4 @@ public class EmployeeHelper {
         return repo.findAllByDeptId(deptName);
     }
 
-    public List<SalaryReport> getSalaryReport(String jobName) {
-        // repo.callProcedure(jobName);
-        List<SalaryReport> result = salaryRepo.findAllSalaryReport();
-        return result;
-    }
 }

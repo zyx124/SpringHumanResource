@@ -36,8 +36,5 @@ public class EmployeeService {
         return helper.getEmployeeByDepartment(deptName);
     }
 
-    public List<SalaryReport> getSalaryReport(String jobName) {
-        return helper.getSalaryReport(jobName);
-    }
 
 }

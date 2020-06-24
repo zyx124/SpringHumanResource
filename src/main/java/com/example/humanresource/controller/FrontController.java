@@ -3,6 +3,7 @@ package com.example.humanresource.controller;
 import com.example.humanresource.model.Employee;
 import com.example.humanresource.model.SalaryReport;
 import com.example.humanresource.service.EmployeeService;
+import com.example.humanresource.service.SalaryReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ public class FrontController {
 
     @Autowired
     private EmployeeService service;
+
 
     @GetMapping("/")
     public String showHomePage(Model model) {
@@ -67,8 +69,4 @@ public class FrontController {
         return "index";
     }
 
-    @GetMapping("/salary-report/{job-name}")
-    public List<SalaryReport> getSalaryReport(@PathVariable("job-name") String jobName, Model model) {
-        return service.getSalaryReport(jobName);
-    }
 }
