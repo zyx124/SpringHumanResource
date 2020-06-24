@@ -1,9 +1,11 @@
 package com.example.humanresource.dao;
 
 import com.example.humanresource.model.Employee;
+import com.example.humanresource.model.SalaryReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.*;
@@ -17,6 +19,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(value="Select empid from employee ORDER BY empid DESC", nativeQuery=true)
     List<Integer> getIdList();
+
 
     List<Employee> findAllByDeptId(int deptName);
 }

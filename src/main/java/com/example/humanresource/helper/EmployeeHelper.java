@@ -1,7 +1,9 @@
 package com.example.humanresource.helper;
 
 import com.example.humanresource.dao.EmployeeRepository;
+import com.example.humanresource.dao.SalaryReportRepository;
 import com.example.humanresource.model.Employee;
+import com.example.humanresource.model.SalaryReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,8 @@ public class EmployeeHelper {
     @Autowired
     private EmployeeRepository repo;
 
-
+    @Autowired
+    private SalaryReportRepository salaryRepo;
 
     public Employee getEmployeeById(int id) {
         Optional<Employee> employeeOptional = repo.findById(id);
@@ -68,5 +71,11 @@ public class EmployeeHelper {
 
     public List<Employee> getEmployeeByDepartment(int deptName) {
         return repo.findAllByDeptId(deptName);
+    }
+
+    public List<SalaryReport> getSalaryReport(String jobName) {
+        // repo.callProcedure(jobName);
+        List<SalaryReport> result = salaryRepo.findAllSalaryReport();
+        return result;
     }
 }

@@ -2,6 +2,7 @@ package com.example.humanresource.service;
 
 import com.example.humanresource.helper.EmployeeHelper;
 import com.example.humanresource.model.Employee;
+import com.example.humanresource.model.SalaryReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -33,6 +34,10 @@ public class EmployeeService {
 
     public List<Employee> getEmployeeByDepartment(int deptName) {
         return helper.getEmployeeByDepartment(deptName);
+    }
+
+    public List<SalaryReport> getSalaryReport(String jobName) {
+        return helper.getSalaryReport(jobName);
     }
 
 }

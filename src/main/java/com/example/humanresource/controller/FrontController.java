@@ -1,6 +1,7 @@
 package com.example.humanresource.controller;
 
 import com.example.humanresource.model.Employee;
+import com.example.humanresource.model.SalaryReport;
 import com.example.humanresource.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,24 +22,23 @@ public class FrontController {
     @Autowired
     private EmployeeService service;
 
-    //    @GetMapping("/addemployee")
-//    public ModelAndView displayEmployee() {
-//        List<Employee> employees = service.getAllEmployees();
-//        ModelAndView modelAndView = new ModelAndView("employees");
-//        modelAndView.addObject("employees", employees);
-//        return modelAndView;
-//    }
-
-    @PostMapping("/modifyemployee/{id}")
-    public String updateEmployeeFront(@PathVariable int id, @RequestBody Employee employee, Model model) {
-        Employee getEmployee = service.getEmployeeById(id);
-        if (getEmployee == null) {
-            System.out.println("Invalid user Id: " + id);
-
-        }
-        model.addAttribute("employee", employee);
-        return "updateEmployee";
+    @GetMapping("/")
+    public String showHomePage(Model model) {
+        List<Employee> employees = service.getAllEmployees();
+        model.addAttribute("employees", employees);
+        return "index";
     }
+
+//    @PostMapping("/modifyemployee/{id}")
+//    public String updateEmployeeFront(@PathVariable int id, @RequestBody Employee employee, Model model) {
+//        Employee getEmployee = service.getEmployeeById(id);
+//        if (getEmployee == null) {
+//            System.out.println("Invalid user Id: " + id);
+//
+//        }
+//        model.addAttribute("employee", employee);
+//        return "updateEmployee";
+//    }
 
     @GetMapping("/add")
     public String showEditForm(Model model) {
@@ -52,10 +52,10 @@ public class FrontController {
             return "add-employee";
         }
         service.newEmployee(employee);
-        return "home";
+        return "redirect:/";
     }
 
-    @GetMapping("/deleteemployee/{id}")
+    @GetMapping("/delete-employee/{id}")
     public String deleteEm(@PathVariable("id") int id, Model model) {
         Employee employee = service.getEmployeeById(id);
         if (employee == null) {
@@ -64,6 +64,11 @@ public class FrontController {
         service.deleteEmployeeById(id);
         List<Employee> employees = service.getAllEmployees();
         model.addAttribute("employees", employees);
-        return "home";
+        return "index";
+    }
+
+    @GetMapping("/salary-report/{job-name}")
+    public List<SalaryReport> getSalaryReport(@PathVariable("job-name") String jobName, Model model) {
+        return service.getSalaryReport(jobName);
     }
 }
