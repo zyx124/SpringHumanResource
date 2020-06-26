@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<div th:switch="${salaryReport}">
+    <h2 th:case="null">No salary report yet!</h2>
+    <div th:case="*">
+        <h2>Salary Report</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Job</th>
+                <th>Department</th>
+                <th>MinSalary</th>
+                <th>MaxSalary</th>
+                <th>AvgSalary</th>
+                <th>TotalSalary</th>
+                <th>EmployeeNumber</th>
+                <th>UpdateTime</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sa : ${salaryReport}">
+                <td th:text="${sa.job}"></td>
+                <td th:text="${sa.department}"></td>
+                <td th:text="${sa.salmin}"></td>
+                <td th:text="${sa.salmax}"></td>
+                <td th:text="${sa.salavg}"></td>
+                <td th:text="${sa.saltotal}"></td>
+                <td th:text="${sa.employeeCount}"></td>
+                <td th:text="${sa.updateTime}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>

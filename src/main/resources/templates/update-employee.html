@@ -8,19 +8,23 @@
     <p th:text></p>
 </body>
 
-<form action="#" th:action="@{/modifyemployee/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+<form action="#" th:action="@{/edit-employee/{id}(id=${employee.id})}" th:object="${employee}" method="post">
     <label for="name">Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <span th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="job">Job</label>
+    <input type="text" th:field="*{job}" id="job" placeholder="job">
+    <span th:if="${#fields.hasErrors('job')}" th:errors="*{job}"></span>
+    <label for="manager">Manager</label>
+    <input type="text" th:field="*{manager}" id="manager" placeholder="manager">
+    <span th:if="${#fields.hasErrors('manager')}" th:errors="*{manager}"></span>
+    <label for="salary">Salary</label>
+    <input type="text" th:field="*{salary}" id="salary" placeholder="salary">
+    <span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+    <label for="deptId">DepartmentID</label>
+    <input type="text" th:field="*{deptId}" id="deptId" placeholder="deptId">
+    <span th:if="${#fields.hasErrors('deptId')}" th:errors="*{deptId}"></span>
 
-    <label for="name">Job</label>
-    <input type="text" th:field="*{job}" id="job" placeholder="Job">
-    <span th:if="*{#fields.hasErrors('job')}" th:errors="*{job}"></span>
-
-    <label for="name">Manager</label>
-    <input type="text" th:field="*{manager}" id="manager" placeholder="Manager">
-    <span th:if="*{#fields.hasErrors('manager')}" th:errors="*{manager}"></span>
-
-    <input type="submit" value="Update User">
+    <input type="submit" value="Update">
 </form>
 </html>
