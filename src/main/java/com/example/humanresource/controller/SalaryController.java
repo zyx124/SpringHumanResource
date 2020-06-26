@@ -1,11 +1,13 @@
 package com.example.humanresource.controller;
 
+import com.example.humanresource.model.Employee;
 import com.example.humanresource.model.SalaryReport;
 import com.example.humanresource.service.SalaryReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +21,12 @@ public class SalaryController {
 //        return salaryService.getSalaryReport(jobName);
 //    }
 
-    @GetMapping("/salary-report")
-    public @ResponseBody  List<SalaryReport> getSalaryReport() {
-        return salaryService.getSalaryReport();
+    @PostMapping("/salary-report")
+    public String getSalaryReport(@RequestParam String jobName, Model model) {
+        List<SalaryReport> salaryReport = salaryService.getSalaryReport(jobName);
+        model.addAttribute("salaryReport", salaryReport);
+        return "salary-report";
     }
+
+
 }

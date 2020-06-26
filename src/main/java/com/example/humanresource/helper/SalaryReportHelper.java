@@ -12,9 +12,11 @@ public class SalaryReportHelper {
     @Autowired
     private SalaryReportRepository salaryRepo;
 
-    public List<SalaryReport> getSalaryReport() {
-        // repo.callProcedure(jobName);
+    public List<SalaryReport> getSalaryReport(String jobName) {
+        salaryRepo.callProcedure(jobName);
         List<SalaryReport> result = salaryRepo.findAll();
         return result;
     }
+
+
 }

@@ -5,11 +5,14 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "salary_report")
+@IdClass(SalaryReportId.class)
 public class SalaryReport {
 
+    @Id
+    private String job;
 
-    @EmbeddedId
-    private SalaryReportId id;
+    @Id
+    private String department;
 
     private double salmin;
 
@@ -25,12 +28,20 @@ public class SalaryReport {
     @Column(name = "updatetime")
     private Date updateTime;
 
-    public SalaryReportId getId() {
-        return id;
+    public String getJob() {
+        return job;
     }
 
-    public void setId(SalaryReportId id) {
-        this.id = id;
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public double getSalmin() {

@@ -12,8 +12,8 @@ public class SalaryReportService {
     @Autowired
     private SalaryReportHelper helper;
 
-    public List<SalaryReport> getSalaryReport() {
-        return helper.getSalaryReport();
+    public List<SalaryReport> getSalaryReport(String job) {
+        return helper.getSalaryReport(job);
     }
 
 }

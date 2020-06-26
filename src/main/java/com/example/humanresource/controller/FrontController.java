@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.EmbeddedId;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -31,22 +32,12 @@ public class FrontController {
         return "index";
     }
 
-//    @PostMapping("/modifyemployee/{id}")
-//    public String updateEmployeeFront(@PathVariable int id, @RequestBody Employee employee, Model model) {
-//        Employee getEmployee = service.getEmployeeById(id);
-//        if (getEmployee == null) {
-//            System.out.println("Invalid user Id: " + id);
-//
-//        }
-//        model.addAttribute("employee", employee);
-//        return "updateEmployee";
-//    }
-
     @GetMapping("/add")
     public String showEditForm(Model model) {
         model.addAttribute("employee", new Employee());
         return "add-employee";
     }
+
 
     @PostMapping("/add")
     public String addEm(@Valid Employee employee, BindingResult bindingResult) {
@@ -61,12 +52,34 @@ public class FrontController {
     public String deleteEm(@PathVariable("id") int id, Model model) {
         Employee employee = service.getEmployeeById(id);
         if (employee == null) {
-            return "<p> The id is invalid!</p>";
+            return "index";
         }
         service.deleteEmployeeById(id);
         List<Employee> employees = service.getAllEmployees();
         model.addAttribute("employees", employees);
         return "index";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        Employee employee = service.getEmployeeById(id);
+        if (employee == null) {
+            return "update-employee";
+        }
+        model.addAttribute("employee", employee);
+        return "update-employee";
+
+    }
+
+    @PostMapping("/edit-employee/{id}")
+    public String editEm(@PathVariable("id") int id, @Valid Employee employee, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "update-employee";
+        }
+        service.updateEmployee(id, employee);
+        List<Employee> employees = service.getAllEmployees();
+        model.addAttribute("employees", employees);
+        return "redirect:/";
     }
 
 }
