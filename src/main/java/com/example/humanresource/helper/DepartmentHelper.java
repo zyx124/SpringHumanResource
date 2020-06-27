@@ -25,8 +25,9 @@ public class DepartmentHelper {
 
     @Transactional
     public void createDepartment(Department temp) {
-        temp.setDeptId(95);
-        repo.create(temp.getDeptId(), temp.getName());
+        List<Integer> idList = repo.getIdList();
+        int id = Collections.max(idList) + 1;
+        repo.create(id, temp.getName(), temp.getLoc());
     }
 
     public void updateDepartment(int id, Department dept) {

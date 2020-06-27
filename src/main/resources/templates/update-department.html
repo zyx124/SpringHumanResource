@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/edit-department/{id}(id=${department.deptId})}" th:object="${department}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="loc">Location</label>
+    <input type="text" th:field="*{loc}" id="loc" placeholder="location">
+    <span th:if="${#fields.hasErrors('loc')}" th:errors="*{loc}"></span>
+
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

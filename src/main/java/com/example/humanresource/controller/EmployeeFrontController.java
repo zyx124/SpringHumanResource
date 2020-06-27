@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class FrontController {
+public class EmployeeFrontController {
 
     @Autowired
     private EmployeeService service;
