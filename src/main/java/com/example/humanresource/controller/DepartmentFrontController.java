@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -76,6 +77,8 @@ public class DepartmentFrontController {
         model.addAttribute("departments", departments);
         return "show-department";
     }
+
+
 
 
 }
