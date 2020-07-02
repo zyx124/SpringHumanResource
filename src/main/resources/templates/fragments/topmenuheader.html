@@ -2,11 +2,6 @@
     <div class="page-header">
         <div class="page-header-top">
             <div class="container">
-                <div class="page-logo">
-                    <a th:href="@{/}">
-                        <img th:src="@{/images/careydevlogosm.png}" alt="logo" style="margin-top:5px"/>
-                    </a>
-                </div>
                 <a href="javascript:;" class="menu-toggler"></a>
             </div>
         </div>            
@@ -14,10 +9,14 @@
             <div class="container">
                 <div class="hor-menu  ">
                     <ul class="nav navbar-nav">
-                        <li class="menu-dropdown classic-menu-dropdown">
+                        <li class="menu-bar classic-menu-dropdown">
                             <a th:href="@{/}"> Home
                             </a>
+
                         </li>
+                        <li><a th:href="@{/show-department}"> Departments</a>
+                            </li>
+                        <li><a th:href="@{/salary-charts}"> SalaryCharts</a></li>
                      </ul>
                  </div>
              </div>

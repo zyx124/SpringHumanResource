@@ -37,6 +37,7 @@ public class DepartmentHelper {
         }
         Department department = departmentOptional.get();
         department.setName(dept.getName());
+        department.setLoc(dept.getLoc());
         repo.save(department);
     }
 

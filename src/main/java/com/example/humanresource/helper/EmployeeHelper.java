@@ -57,6 +57,9 @@ public class EmployeeHelper {
         if (temp.getManager() != null) {
             employee.setManager(temp.getManager());
         }
+        if (temp.getSalary() != null) {
+            employee.setSalary(temp.getSalary());
+        }
 
         repo.save(employee);
 

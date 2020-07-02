@@ -47,7 +47,7 @@ public class DepartmentFrontController {
         service.updateDepartment(id, department);
         List<Department> departments = service.getAllDepartments();
         model.addAttribute("departments", departments);
-        return "redirect:show-department";
+        return "redirect:/show-department";
     }
 
     @GetMapping("/add-department")

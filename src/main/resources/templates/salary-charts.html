@@ -22,19 +22,19 @@
             <div class="container">
                 <div class="row" style="margin-bottom:30px">
                     <div class="col-md-6">
-                        <h1>Sales: May - July</h1>
+                        <h1 style="text-align: center">Salary Chart</h1>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:30px">
                     <div class="col-md-6" style="margin-top:20px">
                         <div id="salesByType" style="width:100%; height:400px;"></div>
                     </div>
-                    <div class="col-md-6" style="margin-top:20px">
-                        <div id="salesByRegion" style="width:100%; height:400px;"></div>
-                    </div>
 
                     <div class="col-md-6" style="margin-top:20px">
-                        <div id="salaryGraph" style="width:100%; height:400px;"></div>
+                        <div id="salaryGraph" style="width:100%; height:400px;">
+                        </div>
+                        <button class="button" style="text-align: center">Sort</button>
+
                     </div>
                 </div>
             </div>
@@ -52,8 +52,7 @@
             }
         });
 
-        drawSalesByTypeChart();
-        drawSalesByRegionChart();
+        // drawSalesByTypeChart()
         drawSalaryGraph();
     });
 
@@ -114,10 +113,10 @@
                 }
             },
             title: {
-                text: 'Sales by Lure Type'
+                text: 'Sales by Dept'
             },
             xAxis: {
-                categories: /*[[${cate}]]*/ []
+                categories: /*[[${salaryByDeptList.keySet()}]]*/ []
             },
             yAxis: {
                 title: {
@@ -136,14 +135,7 @@
                 }
             },
             series: [{
-                name: 'test',
-                data: /*[[${inshoreSales}]]*/ []
-            }, {
-                name: 'Nearshore',
-                data: /*[[${nearshoreSales}]]*/ []
-            }, {
-                name: 'Offshore',
-                data: /*[[${offshoreSales}]]*/ []
+                data: /*[[${salaryByDeptList.values()}]]*/ []
             }]
         });
     }
@@ -164,7 +156,7 @@
                 text: 'Salary Chart'
             },
             xAxis: {
-                categories: /*[[${nameList}]]*/ []
+                categories: /*[[${salaryMap.keySet()}]]*/ []
             },
             yAxis: {
                 title: {
@@ -183,12 +175,13 @@
                 }
             },
             series: [{
-                name: 'test',
-                data: /*[[${salaryList}]]*/ []
+                name: "salary",
+                dataSorting: {enabled: true},
+                data: /*[[${salaryMap.values()}]]*/ []
             }]
         });
     }
-    /*]]>*/
+
 </script>
 </body>
 </html>
